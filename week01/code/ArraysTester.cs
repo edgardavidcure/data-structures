@@ -1,8 +1,10 @@
-public static class ArraysTester {
+public static class ArraysTester
+{
     /// <summary>
     /// Entry point for the tests
     /// </summary>
-    public static void Run() {
+    public static void Run()
+    {
         // Sample Test Cases (may not be comprehensive)
         Console.WriteLine("\n=========== PROBLEM 1 TESTS ===========");
         double[] multiples = MultiplesOf(7, 5);
@@ -34,14 +36,21 @@ public static class ArraysTester {
     /// <returns>array of doubles that are the multiples of the supplied number</returns>
     private static double[] MultiplesOf(double number, int length)
     {
-        // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // Create an empty list where the multiples of each number will be stored
+        var results = new List<double>();
 
-        return new double[0]; // replace this return statement with your own
+        // Create a for loop to iterate 'length' times
+        for (int i = 1; i <= length; i++)
+        {
+            // Calculate the multiple of 'number' for the current iteration
+            var multiple = i * number;
+            // Append the calculated multiple to the 'results' list
+            results.Add(multiple);
+        }
+        // Convert the 'results' list to an array and return it
+        return results.ToArray();
     }
-    
+
     /// <summary>
     /// Rotate the 'data' to the right by the 'amount'.  For example, if the data is 
     /// <c>&lt;List&gt;{1, 2, 3, 4, 5, 6, 7, 8, 9}</c> and an amount is 3 then the list returned should be 
@@ -57,5 +66,32 @@ public static class ArraysTester {
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
+        // Step 1: Check if the amount is within the valid range
+        // Ensure that amount is between 1 and data.Count (inclusive)
+        // If not, throw an exception or handle it appropriately
+        if (amount < 1 || amount > data.Count)
+        {
+            throw new ArgumentOutOfRangeException(nameof(amount), "Amount should be between 1 and data.Count");
+        }
+        // Step 2: Calculate the index to split the list
+        // Use modulo to handle wrapping around if needed
+        int splitIndex = data.Count - amount;
+
+        // Step 3: Get the right portion of the list using list slicing
+        // Use data.GetRange method to get the sublist starting from splitIndex to the end
+        var rightPart = data.GetRange(splitIndex, amount);
+
+        // Step 4: Get the left portion of the list using list slicing
+        // Use data.GetRange method to get the sublist from the beginning up to splitIndex
+        var leftPart = data.GetRange(0, splitIndex);
+
+        // Step 5: Clear the original list
+        data.Clear();
+
+        // Step 6: Add the right and left parts back to the original list
+        data.AddRange(rightPart);
+        data.AddRange(leftPart);
+
+        // TODO Problem 2 End
     }
 }
