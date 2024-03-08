@@ -1,5 +1,7 @@
-﻿public static class TakingTurns {
-    public static void Test() {
+﻿public static class TakingTurns
+{
+    public static void Test()
+    {
         // TODO Problem 1 - Run test cases and fix the code to match requirements
         // Test Cases
 
@@ -16,7 +18,7 @@
         while (players.Length > 0)
             players.GetNextPerson();
         // Defect(s) Found: 
-
+        //AddPerson was not following the queue principle of first in first out
         Console.WriteLine("---------");
 
         // Test 2
@@ -28,7 +30,8 @@
         players.AddPerson("Bob", 2);
         players.AddPerson("Tim", 5);
         players.AddPerson("Sue", 3);
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++)
+        {
             players.GetNextPerson();
             // Console.WriteLine(players);
         }
@@ -39,6 +42,7 @@
             players.GetNextPerson();
 
         // Defect(s) Found: 
+        //AddPerson was not following the queue principle of first in first out
 
         Console.WriteLine("---------");
 
@@ -52,15 +56,16 @@
         players.AddPerson("Tim", 0);
         players.AddPerson("Sue", 3);
         // Console.WriteLine(players);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++)
+        {
             players.GetNextPerson();
             // Console.WriteLine(players);
         }
         // Defect(s) Found: 
-
+        //GetNextPerson was not acknowledging users with 0 or less turns
         Console.WriteLine("---------");
 
-         // Test 4
+        // Test 4
         // Scenario: Create a queue with the following people and turns: Tim (Forever), Sue (3)
         // Run 10 times.
         // Expected Result: Tim, Sue, Tim, Sue, Tim, Sue, Tim, Tim, Tim, Tim
@@ -69,11 +74,13 @@
         players.AddPerson("Tim", -3);
         players.AddPerson("Sue", 3);
         // Console.WriteLine(players);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++)
+        {
             players.GetNextPerson();
             // Console.WriteLine(players);
         }
         // Defect(s) Found: 
+        //GetNextPerson was not acknowledging users with 0 or less turns
 
         Console.WriteLine("---------");
 
